@@ -1,3 +1,4 @@
+
    :root {
   --sidebar-bg: #1e293b;
   --sidebar-width: 260px;
@@ -146,7 +147,7 @@ main {
   min-height: 100vh;
   color: #f8fafc;
   font-family: Arial, sans-serif;
-  margin-left: var(--sidebar-width);
+  
 }
 
 .section {

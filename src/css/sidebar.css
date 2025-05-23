@@ -1,0 +1,165 @@
+:root {
+  --sidebar-bg: #1e293b;
+  --sidebar-width: 260px;
+  --sidebar-width-closed: 60px;
+  --sidebar-width-mobile: 100%;
+}
+
+/* Сайдбар */
+#sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: var(--sidebar-width);
+  background-color: var(--sidebar-bg);
+  color: white;
+  padding: 3.5rem 1rem 1rem;
+  box-shadow: 4px 0 15px rgba(0, 0, 0, 0.5);
+  overflow-x: hidden;
+  overflow-y: auto;
+  z-index: 10000;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  transition: width 0.3s ease, padding 0.3s ease, transform 0.3s ease;
+}
+
+/* Закрытый сайдбар */
+#sidebar.closed {
+  width: var(--sidebar-width-closed);
+  padding: 3.5rem 0.4rem 1rem;
+}
+
+/* Кнопка открытия сайдбара */
+.toggle-btn {
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.6rem;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 11000;
+  margin: 0;
+  padding: 0;
+  box-sizing: content-box;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.toggle-btn:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+  transform: scale(1.05);
+}
+
+/* Ссылки сайдбара */
+#sidebar a {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+  padding: 0.6rem 0.8rem;
+  border-radius: 6px;
+  margin-bottom: 8px;
+  transition: background-color 0.2s ease, transform 0.3s ease;
+  white-space: nowrap;
+  position: relative;
+}
+
+#sidebar a:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+  transform: translateX(3px);
+}
+
+/* Иконка в ссылках */
+#sidebar a .icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  margin-right: 12px;
+  flex-shrink: 0;
+}
+
+#sidebar a .icon svg {
+  width: 20px;
+  height: 20px;
+  stroke: currentColor;
+}
+
+/* Текст в ссылках */
+#sidebar a .text {
+  display: inline-block;
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+
+/* Закрытый сайдбар — иконки по центру, текст скрыт */
+#sidebar.closed a {
+  justify-content: center;
+}
+
+#sidebar.closed a .icon {
+  margin-right: 0;
+}
+
+#sidebar.closed a .text {
+  opacity: 0;
+  width: 0;
+  overflow: hidden;
+}
+
+/* Затемнение под сайдбар */
+#overlay {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.4);
+  transition: opacity 0.3s ease;
+}
+
+#overlay.active {
+  display: block;
+}
+
+/* Адаптивность: при ширине <= 999px — скрываем сайдбар, показываем только кнопку */
+@media (max-width: 999px) {
+  #sidebar {
+    width: 0;
+    padding: 3.5rem 0;
+    overflow: hidden;
+    transform: translateX(-100%);
+  }
+
+  #sidebar.open {
+    width: var(--sidebar-width-mobile);
+    padding: 3.5rem 1rem 1rem;
+    transform: translateX(0);
+  }
+}
+
+/* Мобильные устройства (<=768px) — сайдбар по умолчанию закрыт, открывается кнопкой */
+@media (max-width: 768px) {
+  #sidebar {
+    width: var(--sidebar-width-mobile);
+    padding: 3.5rem 1rem 1rem;
+    box-shadow: none;
+  }
+}
+
+/* Кнопка всегда видна */
+.toggle-btn {
+  display: flex;
+}

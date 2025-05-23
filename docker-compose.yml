@@ -1,0 +1,50 @@
+version: '3.7'
+
+services:
+  web:
+    build: .
+    container_name: php-web
+    ports:
+      - "8080:80"
+    volumes:
+      # На Windows избегай абсолютных путей с /, используй относительный путь (.)
+      - ./src:/var/www/html
+    depends_on:
+      - database
+    networks:
+      - my-network
+    # platform: linux/arm64  # Убери эту строку, если не используешь ARM Docker Desktop. Оставь только если у тебя ARM-процессор!
+
+  database:
+    image: mysql:8.0
+    container_name: php-mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: my_database
+    volumes:
+      # Обрати внимание: volume лучше использовать, чем монтировать папку с Windows
+      - db_data:/var/lib/mysql
+    networks:
+      - my-network
+    # platform: linux/arm64  # Аналогично, убери если не используешь ARM!
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin
+    environment:
+      PMA_HOST: database
+      PMA_USER: root
+      PMA_PASSWORD: root
+    ports:
+      - "8081:80"
+    depends_on:
+      - database
+    networks:
+      - my-network
+
+networks:
+  my-network:
+    driver: bridge
+
+volumes:
+  db_data:

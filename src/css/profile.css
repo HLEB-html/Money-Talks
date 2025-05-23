@@ -1,0 +1,126 @@
+   main { 
+  padding: 40px;
+  flex-grow: 1;
+  background-color: #0f172a;
+  min-height: 100vh;
+  color: #f8fafc;
+  font-family: Arial, sans-serif;
+  margin-left: 200px; /* если есть сайдбар */
+}
+
+.section {
+  padding-top: 50px;
+  background-color: #1e293b;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 30px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+}
+
+h1, h2 {
+  margin-bottom: 16px;
+  color: #f8fafc;
+}
+
+.section h3 {
+  margin-top: 20px;
+  color: #a5b4fc;
+}
+
+.info {
+  margin-bottom: 8px;
+  color: #cbd5e1;
+}
+
+.label {
+  color: #94a3b8;
+}
+
+a.logout {
+  display: inline-block;
+  margin-top: 20px;
+  color: #3b82f6;
+  text-decoration: none;
+}
+
+a.logout:hover {
+  color: #2563eb;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+  color: #e2e8f0;
+  table-layout: fixed; /* фиксированная ширина колонок */
+  word-wrap: break-word; /* перенос слов */
+}
+
+table th, table td {
+  border: 1px solid #334155;
+  padding: 10px;
+  text-align: left;
+}
+
+table th {
+  background-color: #334155;
+}
+
+.actions a, .actions form button {
+  margin-right: 10px;
+  color: #60a5fa;
+  text-decoration: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font: inherit;
+  padding: 0;
+}
+
+.actions a:hover, .actions form button:hover {
+  color: #3b82f6;
+}
+
+.actions form {
+  display: inline;
+}
+
+/* Медиазапрос для мобильных устройств */
+@media (max-width: 600px) {
+  main {
+    padding: 20px 15px;
+    margin-left: 0; /* отключаем отступ слева, если сайдбар прячется */
+  }
+
+  .section {
+    padding-top: 30px;
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-bottom: 20px;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  h2 {
+    font-size: 1.25rem;
+  }
+
+  table th, table td {
+    padding: 8px 6px;
+    font-size: 0.9rem;
+  }
+
+  /* Чтобы таблица была горизонтально прокручиваемой на мобильных */
+  table {
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch; /* плавная прокрутка на iOS */
+  }
+
+  .actions a, .actions form button {
+    margin-right: 6px;
+    font-size: 0.85rem;
+  }
+}
